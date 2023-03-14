@@ -16,6 +16,8 @@ server {
        root /usr/share/nginx/html;
        index index.html index.htm;
        proxy_pass http://samplecluster; // upstream에 있는 이름
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
     }
 
     error_page  404              /404.html;
@@ -31,4 +33,4 @@ server {
 ```  
 
 위 결과 : round -robin으로 번갈아가며 proxy서버가 upstream server들을 요청해준다.  
-
+ proxy_set_header 지시자는 요청 헤더를 수정하여 백엔드 서버에서 클라이언트로 반환되는 응답에 대한 정보를 추가한다.  
