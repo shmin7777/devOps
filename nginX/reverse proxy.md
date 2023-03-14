@@ -1,15 +1,19 @@
+## Reverse proxy
+nginx-server(host) ip로 요청을 하면 proxy_pass http://remote-ip(was):port; # reverse proxy 이 경로로 proxy를 해줌  
+ex) remote-ip:8081이 url을 감추고 nginx-server ip:80으로 요청을 하면 remote was가 호출된다.  
+
 ``` 
 server {
     listen       80;
     server_name  localhost;
-    server_name  192.168.87.42;
+    server_name  nginx-server(host) ip;
 
     #access_log  /var/log/nginx/host.access.log  main;
  
     location / {
       root  /ncp/data/www/;
       index index.html index.htm;
-      proxy_pass http://3.36.131.2:8081; # reverse proxy
+      proxy_pass http://remote-ip(was):port; # reverse proxy
     }
 
     error_page  404              /404.html;
@@ -46,4 +50,5 @@ server {
     #}
 }
 
-```
+```  
+
