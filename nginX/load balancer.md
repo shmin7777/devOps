@@ -55,3 +55,6 @@ server {
 }
 
 ```  
+
+위 결과 : round -robin으로 번갈아가며 proxy서버가 upstream server들을 요청해준다.  
+
