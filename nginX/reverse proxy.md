@@ -4,13 +4,11 @@ server {
     server_name  localhost;
     server_name  192.168.87.42;
 
-
     #access_log  /var/log/nginx/host.access.log  main;
-
-    root  /ncp/data/www/;
-    index index.html index.htm;
+ 
     location / {
-      try_files $uri $uri/ = 404; # uri 경로에서 찾고 없으면 404
+      root  /ncp/data/www/;
+      index index.html index.htm;
       proxy_pass http://3.36.131.2:8081; # reverse proxy
     }
 
